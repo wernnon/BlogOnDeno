@@ -1,6 +1,0 @@
-{
-  "imports": {
-    "$fresh/": "https://deno.land/x/fresh@1.6.0/",
-    "postgres": "https://deno.land/x/postgres@v0.17.0/mod.ts"
-  }
-}

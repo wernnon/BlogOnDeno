@@ -62,7 +62,7 @@ export default function PerfilForm({ usuario }: { usuario: Usuario }) {
   return (
     <div>
       <form onSubmit={handleAtualizarPerfil} >
-        <label class="block">
+        <label >
           Nome:
           <input
             type="text"
@@ -71,7 +71,7 @@ export default function PerfilForm({ usuario }: { usuario: Usuario }) {
           />
         </label>
 
-        <label class="block">
+        <label>
           Email:
           <input
             type="email"
@@ -80,7 +80,7 @@ export default function PerfilForm({ usuario }: { usuario: Usuario }) {
           />
         </label>
 
-        <label class="block">
+        <label>
           Cargo:
           <input
             type="text"
@@ -99,7 +99,7 @@ export default function PerfilForm({ usuario }: { usuario: Usuario }) {
       <form onSubmit={handleAlterarSenha} >
         <h2>Alterar Senha</h2>
 
-        <label class="block">
+        <label>
           Senha atual:
           <input
             type="password"
@@ -108,7 +108,7 @@ export default function PerfilForm({ usuario }: { usuario: Usuario }) {
           />
         </label>
 
-        <label class="block">
+        <label>
           Nova senha:
           <input
             type="password"
@@ -117,7 +117,7 @@ export default function PerfilForm({ usuario }: { usuario: Usuario }) {
           />
         </label>
 
-        <label class="block">
+        <label>
           Confirmar nova senha:
           <input
             type="password"
@@ -130,7 +130,6 @@ export default function PerfilForm({ usuario }: { usuario: Usuario }) {
 
         <button
           type="submit"
-         
         >
           Alterar Senha
         </button>
