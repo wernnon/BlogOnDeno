@@ -24,7 +24,7 @@ export const handler: Handlers = {
     }
 
     const result = await query(
-      "SELECT id, nome, email, cargo FROM usuarios WHERE id = $1",
+      "SELECT id, nome, email FROM usuarios WHERE id = $1",
       [user.id],
     );
 
@@ -36,7 +36,7 @@ export const handler: Handlers = {
   },
 
   // POST: Atualiza os dados do usuário, incluindo o e-mail
-  async POST(req, ctx) {
+  async POST(req) {
     const token = extrairToken(req.headers.get("cookie"));
     if (!token) return new Response("Não autorizado", { status: 401 });
 
@@ -44,16 +44,16 @@ export const handler: Handlers = {
     if (!user) return new Response("Token inválido", { status: 401 });
 
     // Espera os dados do corpo da requisição
-    const { nome, email, cargo } = await req.json();
+    const { nome, email} = await req.json();
 
-    if (!nome || !email || !cargo) {
+    if (!nome || !email ) {
       return new Response("Dados incompletos", { status: 400 });
     }
 
     try {
       await query(
-        "UPDATE usuarios SET nome = $1, email = $2, cargo = $3 WHERE id = $4",
-        [nome, email, cargo, user.id],
+        "UPDATE usuarios SET nome = $1, email = $2  WHERE id = $4",
+        [nome, email, user.id],
       );
 
       return new Response("Dados atualizados com sucesso", { status: 200 });
@@ -67,7 +67,7 @@ export const handler: Handlers = {
 // Página de perfil que renderiza o formulário com os dados do usuário
 export default function PerfilPage({ data }: PageProps) {
   return (
-    <div>
+    <div class='login-container'>
       <h1>Meu Perfil</h1>
       <PerfilForm usuario={data} />
     </div>

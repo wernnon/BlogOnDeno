@@ -6,21 +6,16 @@ export default function Home() {
       <div>
         <div class = 'login-container'>
           <div class = 'login-box'>
-              <img
-                src="/logo.svg"
-                width="75%"
-                height="75%"
-                alt="the Fresh logo"
-              />
             <div class='low-container'>
               <div class='titulo-2'> Bem vindo a plataforma de Login</div>
+              <div class='titulo-2'> Em Fresh e Deno</div>
               <div class='buttons'>
-                <div class='button'> 
+                <div class='button' > 
                   <a href='/login'>
                     Entrar
                   </a>
                 </div>
-                <div class='button'>
+                <div class='button' >
                   <a href='/register'>
                     Cadastrar
                   </a>

@@ -30,12 +30,13 @@ export default function LoginPage() {
   };
 
   return (
-    <div>
-      <h1>Login</h1>
-      <form onSubmit={handleSubmit}>
-        <div>
-          <label htmlFor="email">Nome de Usuário:</label>
-          <input
+    <div class='login-container'>
+      <form onSubmit={handleSubmit} class='login-box' >
+        <h1 class='titulo-2'>Login</h1>
+        <div class='form-container'>
+          <label class='form-icon' htmlFor="email">E-mail:</label>
+          <input class='form-input'
+            placeholder="Digite seu email"
             type="text"
             id="email"
             name="email"
@@ -44,10 +45,11 @@ export default function LoginPage() {
             required
           />
         </div>
-        <div>
-          <label htmlFor="senha">Senha:</label>
-          <input
-            type="senha"
+        <div class='form-container'>
+          <label class='form-icon' htmlFor="senha">Senha:</label>
+          <input class='form-input'
+          placeholder="Digite sua senha"
+            type="password"
             id="senha"
             name="senha"
             value={senha}
@@ -55,7 +57,7 @@ export default function LoginPage() {
             required
           />
         </div>
-        <button type="submit">Entrar</button>
+        <button class='button' type="submit">Entrar</button>
         {mensagem && <p class="text-red-500 text-sm">{mensagem}</p>}
       </form>
       <p>

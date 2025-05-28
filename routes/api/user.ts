@@ -5,12 +5,11 @@ import * as bcrypt from "https://deno.land/x/bcrypt@v0.4.1/mod.ts";
 export const handler: Handlers = {
   async POST(req) {
     try {
-      const { nome, email, senha, cargo } = await req.json();
+      const { nome, email, senha} = await req.json();
 
-      if (!nome || !email || !senha || !cargo) {
+      if (!nome || !email || !senha ) {
         return new Response("Todos os campos são obrigatórios", { status: 400 });
       }
-
       // Verificar se o e-mail já está cadastrado
       const usuariosExistente = await query(
         "SELECT id FROM usuarios WHERE email = $1",
@@ -24,8 +23,8 @@ export const handler: Handlers = {
       const hashed = await bcrypt.hash(senha);
 
       await query(
-        "INSERT INTO usuarios (nome, email, senha, cargo) VALUES ($1, $2, $3, $4)",
-        [nome, email, hashed, cargo],
+        "INSERT INTO usuarios (nome, email, senha) VALUES ($1, $2, $3)",
+        [nome, email, hashed],
       );
 
       return new Response("Usuário cadastrado com sucesso", { status: 201 });

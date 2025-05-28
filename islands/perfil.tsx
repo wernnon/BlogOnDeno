@@ -4,13 +4,11 @@ interface Usuario {
   id: number;
   nome: string;
   email: string;
-  cargo: string;
 }
 
 export default function PerfilForm({ usuario }: { usuario: Usuario }) {
   const [nome, setNome] = useState(usuario.nome);
   const [email, setEmail] = useState(usuario.email);
-  const [cargo, setCargo] = useState(usuario.cargo);
   const [mensagem, setMensagem] = useState("");
   const [senhaAtual, setSenhaAtual] = useState("");
   const [novaSenha, setNovaSenha] = useState("");
@@ -19,10 +17,10 @@ export default function PerfilForm({ usuario }: { usuario: Usuario }) {
   const handleAtualizarPerfil = async (e: Event) => {
     e.preventDefault();
 
-    const res = await fetch("/perfil", {
+    const res = await fetch("/api/profile", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ nome, email, cargo }),
+      body: JSON.stringify({ nome, email}),
     });
 
     if (res.ok) {
@@ -40,7 +38,7 @@ export default function PerfilForm({ usuario }: { usuario: Usuario }) {
       return;
     }
 
-    const res = await fetch("/perfil/senha", {
+    const res = await fetch("/api/perfil/senha", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
@@ -60,82 +58,88 @@ export default function PerfilForm({ usuario }: { usuario: Usuario }) {
   };
 
   return (
-    <div>
+    <div class='side-by-sider'>
+      <div class='login-box'>
       <form onSubmit={handleAtualizarPerfil} >
-        <label >
-          Nome:
-          <input
-            type="text"
-            value={nome}
-            onInput={(e) => setNome((e.target as HTMLInputElement).value)}
-          />
-        </label>
-
-        <label>
-          Email:
-          <input
-            type="email"
-            value={email}
-            onInput={(e) => setEmail((e.target as HTMLInputElement).value)}
-          />
-        </label>
-
-        <label>
-          Cargo:
-          <input
-            type="text"
-            value={cargo}
-            onInput={(e) => setCargo((e.target as HTMLInputElement).value)}
-          />
-        </label>
-
-        <button
+        <div class='form-container'>
+            <label class='form-icon'>
+            Nome:
+            </label>
+            <input class='form-input'
+              type="text"
+              value={nome}
+              onInput={(e) => setNome((e.target as HTMLInputElement).value)}
+            />
+        </div>
+        <div class='form-container'>
+          <label class='form-icon'>
+            Email:
+            </label>
+            <input
+              class='form-input'
+              type="email"
+              value={email}
+              onInput={(e) => setEmail((e.target as HTMLInputElement).value)}
+            />
+        </div>
+        <div class='gambi'>
+          a
+        </div>
+          <button
+          class='button'
           type="submit"
-        >
-          Atualizar Perfil
-        </button>
-      </form>
+          >
+            Atualizar Perfil
+          </button>
+        </form>
+      </div>
+      <div class='login-box'>
+        <form onSubmit={handleAlterarSenha} >
+          <div class='form-container'> 
+            <label  class='form-icon'>
+              Senha atual:
+            </label>
+            <input
+              class='form-input'
+              type="text"
+              value={senhaAtual}
+              onInput={(e) => setSenhaAtual((e.target as HTMLInputElement).value)}
+            />
+          </div>
+          <div class='form-container'>
+            <label  class='form-icon'>
+              Nova senha:
+            </label>
+            <input
+              class='form-input'
+              type="text"
+              value={novaSenha}
+              onInput={(e) => setNovaSenha((e.target as HTMLInputElement).value)}
+              />
+          </div>
+          <div class='form-container'>    
 
-      <form onSubmit={handleAlterarSenha} >
-        <h2>Alterar Senha</h2>
-
-        <label>
-          Senha atual:
-          <input
-            type="password"
-            value={senhaAtual}
-            onInput={(e) => setSenhaAtual((e.target as HTMLInputElement).value)}
-          />
-        </label>
-
-        <label>
-          Nova senha:
-          <input
-            type="password"
-            value={novaSenha}
-            onInput={(e) => setNovaSenha((e.target as HTMLInputElement).value)}
-          />
-        </label>
-
-        <label>
-          Confirmar nova senha:
-          <input
-            type="password"
-            value={confirmarSenha}
-            onInput={(e) =>
-              setConfirmarSenha((e.target as HTMLInputElement).value)
-            }
-          />
-        </label>
-
-        <button
-          type="submit"
-        >
-          Alterar Senha
-        </button>
-      </form>
-
-      {mensagem && <p>{mensagem}</p>}
+            <label  class='form-icon'>
+              Confirmar:
+            </label>
+            <input
+              class='form-input'
+              type="text"
+              value={confirmarSenha}
+              onInput={(e) =>
+                setConfirmarSenha((e.target as HTMLInputElement).value)
+             }
+             />
+            </div>
+            <button
+              class='button'
+              type="submit"
+              >
+              Alterar Senha
+            </button>
+        {mensagem && <p>{mensagem}</p>}
+        </form>
+      </div>
     </div>
   );
 }
