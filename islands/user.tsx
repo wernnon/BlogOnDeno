@@ -2,14 +2,13 @@ import { useState } from "preact/hooks";
 
 export default function User() {
   const [usuario, setUsuario] = useState("");
-  const [cargo, setCargo] = useState("");
   const [success, setSuccess] = useState(false);
 
   async function handleSubmit(e: Event) {
     e.preventDefault();
     const res = await fetch("/api/user", {
       method: "POST",
-      body: JSON.stringify({ usuario, cargo }),
+      body: JSON.stringify({ usuario }),
       headers: {
         "Content-Type": "application/json",
       },
@@ -32,16 +31,6 @@ export default function User() {
           required
         />
       </label>
-      <br />
-      <label>
-        Cargo:
-        <input
-          value={cargo}
-          onInput={(e) => setCargo((e.target as HTMLInputElement).value)}
-          required
-        />
-      </label>
-      <br />
       <button type="submit" style={{ marginTop: "1rem" }}>
         💾 Salvar
       </button>

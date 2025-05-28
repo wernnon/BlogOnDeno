@@ -8,6 +8,7 @@ interface Usuario {
   nome: string;
   email: string;
   senha: string;
+  confirmacao: string;
 }
 
 export const handler: Handlers = {
